@@ -98,9 +98,9 @@ void Inserir()
     printf("###----> INSERIR LÂMPADA <----####\n");
     printf("Marca: ");
     scanf("%s", lampadas[insere].marca); // adicionando marca (scanf deixa de registrar a informação depois de um espaço em branco, por isso devem ser utilizadas palavras simples, como informado para o usuário na seção AJUDA)
-    printf("Tensão: ");
+    printf("Tensão (em volts): ");
     scanf("%i", &lampadas[insere].v); // adicionando tensão
-    printf("Potência: ");
+    printf("Potência (em watts): ");
     scanf("%i", &lampadas[insere].w); // adicionando potência
     printf("Para tipo digite\n\t--> 1 <-- para incandescente\n\t--> 2 <-- para fluorescente\n\t--> 3 <-- para LED\n"); // um pequeno guia para o usuário do padrão/tipo de resposta que o campo exige
     printf("Tipo: ");
@@ -117,13 +117,13 @@ void Mostrar()
     for (int i = 0; i < ITENS; i++)
     {
         if (lampadas[i].cadastrado == 1) // testando para mostrar somente os itens cadastrados
-            printf("%s\t%i\t%i\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
+            printf("%s\t%i (V)\t%i (W)\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
     }
 }
 
 void Buscar()
 {
-    int b;
+    int b; // variável para salvar a escolha do usuário pelo tipo de busca
     printf("####----> BUSCAR LÂMPADA(s) <----####\n");
     printf("Digite ----> 1 <---- para realizar uma busca simples (apenas um identificador).\n");
     printf("Digite ----> 2 <---- para realizar uma busca composta (dois identificadores a sua escolha).\n");
@@ -131,11 +131,9 @@ void Buscar()
     switch (b)
     {
     case 1:
-        tipoBuscador = 1;
         BuscaSimples();
         break;
     case 2:
-        tipoBuscador = 2;
         BuscaComposta();
     default:
         printf("Comando inválido.\n");
@@ -154,7 +152,7 @@ void BuscaSimples()
     printf("Digite --> 5 <-- para buscar por COR\n");
     scanf("%i", &ma);
     
-    int buscaCheck;
+    int buscaCheck; // o buscador retorna um inteiro, se ele for igual a zero, quer dizer que não foi encontrado no banco de dados, caso seja diferente, nesse caso só sendo possível ser maior, ele vai imprimir na tela as correspondências
     switch (ma)
     {
     case 1:
@@ -202,7 +200,7 @@ void BuscaComposta()
     printf("Digite --> 9 <-- para buscar por TIPO e COR\n");
     scanf("%i", &ma);
     
-    int buscaCheck;
+    int buscaCheck; // o buscador retorna um inteiro, se ele for igual a zero, quer dizer que não foi encontrado no banco de dados, caso seja diferente, nesse caso só sendo possível ser maior, ele vai imprimir na tela as correspondências
     switch (ma)
     {
     case 0:
@@ -271,8 +269,8 @@ void BuscaComposta()
 
 lampada ValorBuscaComposto(int tipoBusca)
 {
-    lampada buscador;
-    switch (tipoBusca)
+    lampada buscador; // variável para salvar o valor de busca do usuário e depois comparar com o banco de dados
+    switch (tipoBusca) // testa todas as possibilidades de combinações de busca
     {
     case 0:
         printf("Digite o nome da marca a ser buscada: ");
@@ -351,7 +349,7 @@ lampada ValorBuscaComposto(int tipoBusca)
 
 lampada ValorBusca(int tipoBusca)
 {
-    lampada buscador;
+    lampada buscador; // variável para salvar o valor de busca do usuário e depois comparar com o banco de dados
     switch (tipoBusca)
     {
     case 1:
@@ -410,7 +408,7 @@ int CmpValorComposto(lampada cmpValor, int escolhaBusca)
                     printf("MARCA\tTENSÃO\tPOTÊNCIA\tTIPO\tCOR\n"); // cabeçalho da tabela
                     cab = 1;
                 }
-                printf("%s\t%i\t%i\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
+                printf("%s\t%i (V)\t%i (W)\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
                 f++;
             }
         }
@@ -426,7 +424,7 @@ int CmpValorComposto(lampada cmpValor, int escolhaBusca)
                     printf("MARCA\tTENSÃO\tPOTÊNCIA\tTIPO\tCOR\n"); // cabeçalho da tabela
                     cab = 1;
                 }
-                printf("%s\t%i\t%i\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
+                printf("%s\t%i (V)\t%i (W)\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
                 f++;
             }
         }
@@ -442,7 +440,7 @@ int CmpValorComposto(lampada cmpValor, int escolhaBusca)
                     printf("MARCA\tTENSÃO\tPOTÊNCIA\tTIPO\tCOR\n"); // cabeçalho da tabela
                     cab = 1;
                 }
-                printf("%s\t%i\t%i\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
+                printf("%s\t%i (V)\t%i (W)\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
                 f++;
             }
         }
@@ -458,7 +456,7 @@ int CmpValorComposto(lampada cmpValor, int escolhaBusca)
                     printf("MARCA\tTENSÃO\tPOTÊNCIA\tTIPO\tCOR\n"); // cabeçalho da tabela
                     cab = 1;
                 }
-                printf("%s\t%i\t%i\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
+                printf("%s\t%i (V)\t%i (W)\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
                 f++;
             }
         }
@@ -475,7 +473,7 @@ int CmpValorComposto(lampada cmpValor, int escolhaBusca)
                      cab = 1;
                 }
                
-                printf("%s\t%i\t%i\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
+                printf("%s\t%i (V)\t%i (W)\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
                 f++;
             }
         }
@@ -492,7 +490,7 @@ int CmpValorComposto(lampada cmpValor, int escolhaBusca)
                      cab = 1;
                 }
                
-                printf("%s\t%i\t%i\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
+                printf("%s\t%i (V)\t%i (W)\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
                 f++;
             }
         }
@@ -509,7 +507,7 @@ int CmpValorComposto(lampada cmpValor, int escolhaBusca)
                      cab = 1;
                 }
                
-                printf("%s\t%i\t%i\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
+                printf("%s\t%i (V)\t%i (W)\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
                 f++;
             }
         }
@@ -525,7 +523,7 @@ int CmpValorComposto(lampada cmpValor, int escolhaBusca)
                      printf("MARCA\tTENSÃO\tPOTÊNCIA\tTIPO\tCOR\n"); // cabeçalho da tabela
                      cab = 1;
                 }
-                printf("%s\t%i\t%i\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
+                printf("%s\t%i (V)\t%i (W)\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
                 f++;
             }
         }
@@ -541,7 +539,7 @@ int CmpValorComposto(lampada cmpValor, int escolhaBusca)
                      printf("MARCA\tTENSÃO\tPOTÊNCIA\tTIPO\tCOR\n"); // cabeçalho da tabela
                      cab = 1;
                 }
-                printf("%s\t%i\t%i\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
+                printf("%s\t%i (V)\t%i (W)\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
                 f++;
             }
         }
@@ -557,7 +555,7 @@ int CmpValorComposto(lampada cmpValor, int escolhaBusca)
                      printf("MARCA\tTENSÃO\tPOTÊNCIA\tTIPO\tCOR\n"); // cabeçalho da tabela
                      cab = 1;
                 }
-                printf("%s\t%i\t%i\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
+                printf("%s\t%i (V)\t%i (W)\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
                 f++;
             }
         }
@@ -572,8 +570,13 @@ int CmpValorComposto(lampada cmpValor, int escolhaBusca)
 
 int CmpValor(lampada cmpValor, int escolhaBusca)
 {
+    // a variável f serve como guia para se foi encontrada alguma correspondência. se ela for incrementada, quer dizer que sim.
+    // a variável cab serve para não imprimir mais de uma vez o cabeçalho da tabela na impressão da busca
+    // a mesma lógica se aplica na função da pesquisa CmpValorComposto
     int f = 0;
     int cab = 0;
+    // a depender da variável escolhaBusca, que é o valor que o usuário definiu para o seu tipo de busca,
+    // serão feitos os testes correspondentes para chegar se há correspondências no banco de dados.
     switch (escolhaBusca)
     {
     case 1:
@@ -586,7 +589,7 @@ int CmpValor(lampada cmpValor, int escolhaBusca)
                     printf("MARCA\tTENSÃO\tPOTÊNCIA\tTIPO\tCOR\n"); // cabeçalho da tabela
                     cab = 1;
                 }
-                printf("%s\t%i\t%i\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
+                printf("%s\t%i (V)\t%i (W)\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
                 f++;
             }
         }
@@ -603,7 +606,7 @@ int CmpValor(lampada cmpValor, int escolhaBusca)
                      cab = 1;
                 }
                
-                printf("%s\t%i\t%i\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
+                printf("%s\t%i (V)\t%i (W)\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
                 f++;
             }
         }
@@ -619,7 +622,7 @@ int CmpValor(lampada cmpValor, int escolhaBusca)
                      printf("MARCA\tTENSÃO\tPOTÊNCIA\tTIPO\tCOR\n"); // cabeçalho da tabela
                      cab = 1;
                 }
-                printf("%s\t%i\t%i\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
+                printf("%s\t%i (V)\t%i (W)\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
                 f++;
             }
         }
@@ -635,7 +638,7 @@ int CmpValor(lampada cmpValor, int escolhaBusca)
                      printf("MARCA\tTENSÃO\tPOTÊNCIA\tTIPO\tCOR\n"); // cabeçalho da tabela
                      cab = 1;
                 }
-                printf("%s\t%i\t%i\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
+                printf("%s\t%i (V)\t%i (W)\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
                 f++;
             }
         }
@@ -651,7 +654,7 @@ int CmpValor(lampada cmpValor, int escolhaBusca)
                      printf("MARCA\tTENSÃO\tPOTÊNCIA\tTIPO\tCOR\n"); // cabeçalho da tabela
                      cab = 1;
                 }
-                printf("%s\t%i\t%i\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
+                printf("%s\t%i (V)\t%i (W)\t\t%i\t%s\n", lampadas[i].marca, lampadas[i].v, lampadas[i].w, lampadas[i].tipo, lampadas[i].cor); // mostrando os itens cadastrados, de acordo com a ordem do cabeçalho
                 f++;
             }
         }
