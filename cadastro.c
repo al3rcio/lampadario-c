@@ -1,8 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define LIVROS 100
-#define STRING 50 
+#define LIVROS 100 // máximo de livros na biblioteca
+#define NOME 20 // máximo de caracteres para nomes
+#define TITULO 50 // máximo de caracteres para títulos dos livros
+
 
 // declarando funções
 void BemVindx();
@@ -15,7 +17,9 @@ void Mostrar();
 void Buscar();
 void Finalizar();
 
-char user[STRING];
+// declarando variáveis globais
+char user[NOME];
+int insere = -1;
 
 typedef struct
 {
@@ -25,10 +29,10 @@ typedef struct
 
 typedef struct
 {
-    char nome[STRING]; // nome da biblioteca
-    char titulo[STRING]; // título do livro
-    char autor[STRING]; // nome do autor do livro
-    char editora[STRING]; // nome da editora 
+    char nome[NOME]; // nome da biblioteca
+    char titulo[TITULO]; // título do livro
+    char autor[NOME]; // nome do autor do livro
+    char editora[NOME]; // nome da editora 
     ano ano; // ano da edição e do lançamento original
 } biblioteca;
 
@@ -81,9 +85,9 @@ int Menu()
     return m;
 }
 
-void EscolhaMenu(int menu)
+void EscolhaMenu(int escolha)
 {
-    switch (menu)
+    switch (escolha)
     {
         case 0:
             Finalizar();
@@ -111,15 +115,32 @@ void Finalizar()
 
 void Inserir()
 {
-    // todo
-    printf("INSERINDO LIVROS\n");
+    insere++; // cada vez q a função é chamada a variável é incrementada para salvar as novas informações no array
+    printf("Olá, %s! Vamos inserir um novo livro*?\n", user);
+    printf("*Só lembrando que esta é uma versão demo, portanto ao encerrar o programa seus dados não ficarão salvos.\n");
+    printf("Qual é o título do livro? ");
+    //fgets(minhaBiblio[insere].nome, TITULO, stdin); 
+    scanf("%s", minhaBiblio[insere].titulo);
+    // printf("Qual é o nome do autor? ");
+    // scanf("%s", minhaBiblio[insere].autor);
+    // printf("Qual é o nome da editora do seu exemplar? ");
+    // scanf("%s", minhaBiblio[insere].editora);
+    // printf("Qual é o ano de lançamento da edição que você tem? ");
+    // scanf("%i", &minhaBiblio[insere].ano.ed);
+    // printf("E o ano original de lançamento, da primeira edição, sabe qual é?\nSe não constar ou não souber informar digite 0000. ");
+    // scanf("%i", &minhaBiblio[insere].ano.lan);
+    // printf("Legal! Já temos informações suficientes!\nVou te reencaminhar para o menu principal, beleza?\n");
     SeparaTopico(2);
+
 }
 
 void Mostrar()
 {
-    // todo
-    printf("MOSTRANDO TODOS OS LIVROS\n");
+    printf("TÍTULO\t\tAUTOR\t\tEDITORA\t\tANO EDIÇÃO\tANO LANÇAMENTO\n0");
+    for (int i = 0; i < LIVROS; i++)
+    {
+        printf("%s\t\t%s\t\t%s\t\t%i\t%i\n", minhaBiblio[i].titulo, minhaBiblio[i].autor, minhaBiblio[i].editora, minhaBiblio[i].ano.ed, minhaBiblio[i].ano.lan);
+    }
     SeparaTopico(2);
 }
 
